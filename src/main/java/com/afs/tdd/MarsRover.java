@@ -16,7 +16,9 @@ public class MarsRover {
 
     public void move(){
         if(location.getDirection() == Direction.NORTH){
-                location.setY(location.getY() + 1);
+            location.setY(location.getY() + 1);
+        }else if(location.getDirection() == Direction.SOUTH){
+            location.setY(location.getY() - 1);
         }
     }
 
