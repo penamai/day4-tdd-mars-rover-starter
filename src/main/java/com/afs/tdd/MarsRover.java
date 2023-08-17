@@ -13,6 +13,8 @@ public class MarsRover {
             move();
         }else if(givenCommand == Command.TURN_LEFT){
             turnLeft();
+        }else if(givenCommand == Command.TURN_RIGHT){
+            turnRight();
         }
     }
 
@@ -37,6 +39,12 @@ public class MarsRover {
             location.setDirection(Direction.NORTH);
         }else{
             location.setDirection(Direction.SOUTH);
+        }
+    }
+
+    private void turnRight() {
+        if(location.getDirection() == Direction.NORTH){
+            location.setDirection(Direction.EAST);
         }
     }
 
