@@ -11,20 +11,20 @@ public class MarsRover {
     }
 
     public void executeCommand(Command givenCommand) {
-        if(givenCommand == Command.MOVE) {
+        if (givenCommand == Command.MOVE) {
             move();
-        }else if(givenCommand == Command.TURN_LEFT){
+        } else if (givenCommand == Command.TURN_LEFT) {
             turnLeft();
-        }else if(givenCommand == Command.TURN_RIGHT){
+        } else if (givenCommand == Command.TURN_RIGHT) {
             turnRight();
         }
     }
 
-    public void move(){
+    public void move() {
         int newX = location.getX();
         int newY = location.getY();
 
-        switch(location.getDirection()){
+        switch (location.getDirection()) {
             case NORTH:
                 newY += 1;
                 break;
@@ -44,25 +44,34 @@ public class MarsRover {
     }
 
     private void turnLeft() {
-        if(location.getDirection() == Direction.NORTH){
-            location.setDirection(Direction.WEST);
-        }else if(location.getDirection() == Direction.SOUTH){
-            location.setDirection(Direction.EAST);
-        }else if(location.getDirection() == Direction.EAST){
-            location.setDirection(Direction.NORTH);
-        }else{
-            location.setDirection(Direction.SOUTH);
+        Direction newDirection = location.getDirection();
+
+        switch (newDirection) {
+            case NORTH:
+                newDirection = Direction.WEST;
+                break;
+            case SOUTH:
+                newDirection = Direction.EAST;
+                break;
+            case EAST:
+                newDirection = Direction.NORTH;
+                break;
+            case WEST:
+                newDirection = Direction.SOUTH;
+                break;
         }
+
+        location.setDirection(newDirection);
     }
 
     private void turnRight() {
-        if(location.getDirection() == Direction.NORTH){
+        if (location.getDirection() == Direction.NORTH) {
             location.setDirection(Direction.EAST);
-        }else if (location.getDirection() == Direction.SOUTH){
+        } else if (location.getDirection() == Direction.SOUTH) {
             location.setDirection(Direction.WEST);
-        }else if (location.getDirection() == Direction.EAST){
+        } else if (location.getDirection() == Direction.EAST) {
             location.setDirection(Direction.SOUTH);
-        }else{
+        } else {
             location.setDirection(Direction.NORTH);
         }
     }
