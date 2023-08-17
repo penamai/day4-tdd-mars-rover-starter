@@ -1,13 +1,32 @@
 package com.afs.tdd;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class MarsRover {
 
     private final Location location;
+    HashMap<Direction, Direction> clockwiseMap = new HashMap<>();
+    HashMap<Direction, Direction> counterClockwiseMap = new HashMap<>();
 
     public MarsRover(Location location) {
         this.location = location;
+        initializeCounterClockwiseMap();
+        initializeClockwiseMap();
+    }
+
+    private void initializeCounterClockwiseMap() {
+        this.counterClockwiseMap.put(Direction.NORTH, Direction.WEST);
+        this.counterClockwiseMap.put(Direction.SOUTH, Direction.EAST);
+        this.counterClockwiseMap.put(Direction.EAST, Direction.NORTH);
+        this.counterClockwiseMap.put(Direction.WEST, Direction.SOUTH);
+    }
+
+    private void initializeClockwiseMap(){
+        this.clockwiseMap.put(Direction.NORTH, Direction.EAST);
+        this.clockwiseMap.put(Direction.SOUTH, Direction.WEST);
+        this.clockwiseMap.put(Direction.EAST, Direction.SOUTH);
+        this.clockwiseMap.put(Direction.WEST, Direction.NORTH);
     }
 
     public void executeCommand(Command givenCommand) {
@@ -44,37 +63,13 @@ public class MarsRover {
     }
 
     private void turnLeft() {
-        Direction newDirection = location.getDirection();
-
-        switch (newDirection) {
-            case NORTH:
-                newDirection = Direction.WEST;
-                break;
-            case SOUTH:
-                newDirection = Direction.EAST;
-                break;
-            case EAST:
-                newDirection = Direction.NORTH;
-                break;
-            case WEST:
-                newDirection = Direction.SOUTH;
-                break;
-        }
-
-        location.setDirection(newDirection);
+        location.setDirection(counterClockwiseMap.get(location.getDirection()));
     }
 
     private void turnRight() {
-        if (location.getDirection() == Direction.NORTH) {
-            location.setDirection(Direction.EAST);
-        } else if (location.getDirection() == Direction.SOUTH) {
-            location.setDirection(Direction.WEST);
-        } else if (location.getDirection() == Direction.EAST) {
-            location.setDirection(Direction.SOUTH);
-        } else {
-            location.setDirection(Direction.NORTH);
-        }
+        location.setDirection(clockwiseMap.get(location.getDirection()));
     }
+
 
     public Location getCurrentLocation() {
         return new Location(location.getX(), location.getY(), location.getDirection());
