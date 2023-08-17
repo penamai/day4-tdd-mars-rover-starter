@@ -11,6 +11,8 @@ public class MarsRover {
     public void executeCommand(Command givenCommand) {
         if(givenCommand == Command.MOVE) {
             move();
+        }else if(givenCommand == Command.TURN_LEFT){
+            turnLeft();
         }
     }
 
@@ -23,6 +25,12 @@ public class MarsRover {
             location.setX(location.getX() + 1);
         }else{
             location.setX(location.getX() - 1);
+        }
+    }
+
+    private void turnLeft() {
+        if(location.getDirection() == Direction.NORTH){
+            location.setDirection(Direction.WEST);
         }
     }
 
