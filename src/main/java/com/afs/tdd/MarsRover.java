@@ -4,7 +4,7 @@ import java.util.List;
 
 public class MarsRover {
 
-    private Location location;
+    private final Location location;
 
     public MarsRover(Location location) {
         this.location = location;
@@ -21,15 +21,26 @@ public class MarsRover {
     }
 
     public void move(){
-        if(location.getDirection() == Direction.NORTH){
-            location.setY(location.getY() + 1);
-        }else if(location.getDirection() == Direction.SOUTH){
-            location.setY(location.getY() - 1);
-        }else if(location.getDirection() == Direction.EAST){
-            location.setX(location.getX() + 1);
-        }else{
-            location.setX(location.getX() - 1);
+        int newX = location.getX();
+        int newY = location.getY();
+
+        switch(location.getDirection()){
+            case NORTH:
+                newY += 1;
+                break;
+            case SOUTH:
+                newY -= 1;
+                break;
+            case EAST:
+                newX += 1;
+                break;
+            case WEST:
+                newX -= 1;
+                break;
         }
+
+        location.setX(newX);
+        location.setY(newY);
     }
 
     private void turnLeft() {
