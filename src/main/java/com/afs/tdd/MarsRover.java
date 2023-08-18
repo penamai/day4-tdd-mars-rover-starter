@@ -38,6 +38,7 @@ public class MarsRover {
             turnRight();
         }
     }
+    //TODO: can use .equals() to compare
 
     public void move() {
         int newX = location.getX();
