@@ -6,8 +6,8 @@ import java.util.List;
 public class MarsRover {
 
     private final Location location;
-    HashMap<Direction, Direction> clockwiseMap = new HashMap<>();
-    HashMap<Direction, Direction> counterClockwiseMap = new HashMap<>();
+    private final HashMap<Direction, Direction> clockwiseMap = new HashMap<>();
+    private final HashMap<Direction, Direction> counterClockwiseMap = new HashMap<>();
 
     public MarsRover(Location location) {
         this.location = location;
